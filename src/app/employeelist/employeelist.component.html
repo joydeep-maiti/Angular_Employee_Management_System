@@ -1,0 +1,48 @@
+<br>
+<br>
+<label>Filter By:</label><br>
+<input type="text" id="filter">
+<br>
+<br>
+<label id="count">Total Number of Employees:{{dataCount}}</label>
+<br>
+<br>
+<table>
+    <tr>
+        <th>Emp ID</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr *ngFor="let obj of employees; let i = index" [attr.data-index]="i">
+        <td><a routerLink="/details"
+            [state]="{
+                data:{
+                    id:obj.id,
+                    name:obj.name,
+                    loc:obj.location,
+                    email:obj.email,
+                    mob:obj.mobile
+                }
+            }">{{obj.id}}</a></td>
+        <td><div id="name{{i+1}}">{{obj.name}}</div></td>
+        <td><div id="loc{{i+1}}">{{obj.location}}</div></td>
+        <td><div id="email{{i+1}}">{{obj.email}}</div></td>
+        <td><div id="mob{{i+1}}">{{obj.mobile}}</div></td>
+        <td><a routerLink="/editEmployee" 
+            [state]="{
+                data:{
+                    id:obj.id,
+                    name:obj.name,
+                    loc:obj.location,
+                    email:obj.email,
+                    mob:obj.mobile
+                }
+            }">{{"Edit"+(i+1)}}</a></td>
+        <td><a href="/details">{{"Delete"+(i+1)}}</a></td>
+    </tr>
+    
+</table>
